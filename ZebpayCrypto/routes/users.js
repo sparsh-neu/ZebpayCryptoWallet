@@ -48,33 +48,4 @@ router.post('/', async(req,res) => {
     }
 })
 
-router.post('/:id/update',async(req,res)=> {
-    try{
-        const user = await User.findById(req.params.id) 
-        user.country = req.body.country
-        const a1 = await user.save()
-        res.json(a1)   
-    }catch(err){
-        res.send('Error')
-    }
- })
-
- router.post('/update',async(req,res)=> {
-    try{
-        var user = await User.findOne({name : req.body.name}) 
-        if (user != null){
-            user.country = req.body.country
-        } else {
-            user = new User({
-                name: req.body.name,
-                country: req.body.country
-            })
-        }
-        const a1 = await user.save()
-        res.json(a1)   
-    }catch(err){
-        res.send('Error : ' + err)
-    }
- })
-
 module.exports = router
